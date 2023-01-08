@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,11 @@ public abstract class Pessoa extends Entidade {
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataNascimento;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*fetch indica o carregamento que será feito dos registros do banco na view
+     * sendo FetchType.EAGER como o default, onde sendo será carregado todos os campos de uma tabela
+     * e FetchType.LAZY define o carregamento de um campo somente quando for solicitado assim melhorando a performance
+     */
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id_fk", nullable = false)
     private Endereco endereco;
 
