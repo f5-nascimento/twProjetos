@@ -52,8 +52,8 @@ public class ProjetoControle {
 
         modelAndView.addObject("projeto", new Projeto());
         modelAndView.addObject("clientes", clienteRepositorio.findAll());
-        modelAndView.addObject("lideres", funcionarioRepositorio.findAll());
-        modelAndView.addObject("funcionarios", funcionarioRepositorio.findAll());
+        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente de Projeto"));
+        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente de Projeto"));
       
         return modelAndView;
     }
@@ -65,8 +65,8 @@ public class ProjetoControle {
         
         modelAndView.addObject("projeto", projetoRepositorio.getOne(id));
         modelAndView.addObject("clientes", clienteRepositorio.findAll());
-        modelAndView.addObject("lideres", funcionarioRepositorio.findAll());
-        modelAndView.addObject("funcionarios", funcionarioRepositorio.findAll());
+        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente de Projeto"));
+        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente de Projeto"));
               
         return modelAndView;
 
